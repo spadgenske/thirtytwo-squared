@@ -1,7 +1,7 @@
 #Update tiles
 #By Tyler Spadgenske
 
-import urllib2, os
+import urllib2, os, time
 
 class Update():
     def __init__(self):
