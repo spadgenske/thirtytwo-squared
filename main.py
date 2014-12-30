@@ -1,10 +1,11 @@
 #LED Controller
 #By Tyler Spadgenske
 
-import time, os, random
+import time, os, random, update, subprocess
 
 class LEDS():
     def __init__(self):
+        os.system('python update.py')
         self.last_tile = ''
         self.tiles = os.listdir('/home/pi/thirtytwo-squared/tiles')
         self.tiles.remove('time.conf')

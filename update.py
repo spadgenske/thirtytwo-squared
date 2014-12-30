@@ -1,7 +1,7 @@
 #Update tiles
 #By Tyler Spadgenske
 
-import urllib2, os, time
+import urllib2, os, time, subprocess
 
 class Update():
     def __init__(self):
@@ -61,6 +61,7 @@ class Update():
         
 
 if __name__ == '__main__':
+    screen = subprocess.Popen(['python', 'startup.py'])
     updater = Update()
     connection = updater.check_connection()
     if connection == True:
@@ -70,6 +71,7 @@ if __name__ == '__main__':
         update_availible = updater.check_for_update()
 
         if update_availible:
+            sup = subprocess.Popen(['python', 'sup.py'])
             print '+++++++++++++++++++++++++++'
             print 'New Update Availible'
             print '+++++++++++++++++++++++++++'
@@ -77,6 +79,8 @@ if __name__ == '__main__':
             updater.delete()
             updater.download(new_files)
             print 'Update Complete'
+            sup.kill()
+            
         else:
             print '+++++++++++++++++++++++++++'
             print 'No Update Found'

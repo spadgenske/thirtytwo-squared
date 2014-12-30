@@ -6,4 +6,5 @@ name-space.ppm
 packers.ppm
 pacman.ppm
 pokeball.ppm
-songebob.ppm
+spongebob.ppm
+mushroom.ppm
