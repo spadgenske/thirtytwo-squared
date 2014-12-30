@@ -8,9 +8,10 @@ class LEDS():
         self.last_tile = ''
         self.tiles = os.listdir('/home/pi/thirtytwo-squared/tiles')
         self.tiles.remove('time.conf')
+        self.tiles.remove('mode.conf')
         time.sleep(9)
         self.lines = []
-        self.time = 0
+        self.time = '10'
         self.mode = '0'
         self.get_tile_time()
         self.modes = []
@@ -46,17 +47,17 @@ class LEDS():
             if self.time[0] == '0':
                 self.time = self.time[-1]
 
-            os.system('sudo rpi-rgb-led-matrix/./led-matrix -D ' + self.mode + ' /home/pi/thirtytwo-squared/tiles/' + self.tile + ' -t ' + self.time + '' + self.scroll)
+            os.system('sudo matrix/./led-matrix -D ' + self.mode + ' /home/pi/thirtytwo-squared/tiles/' + self.tile + ' -t ' + self.time + '' + self.scroll)
             time.sleep(3)
 
     def get_tile_time(self):
         self.file = open('/home/pi/thirtytwo-squared/tiles/time.conf', 'r')
-        for i in range(0, len(self.tiles) - 1):
+        for i in range(0, len(self.tiles)):
             self.lines.append(self.file.readline().rstrip())
 
     def get_mode(self):
         self.mode_file = open('/home/pi/thirtytwo-squared/tiles/mode.conf', 'r')
-        for i in range(0, len(self.tiles) - 1):
+        for i in range(0, len(self.tiles)):
             self.modes.append(self.mode_file.readline().rstrip())
             
 if __name__ == '__main__':
