@@ -1,38 +1,14 @@
 #Update tiles
 #By Tyler Spadgenske
 
-import urllib2
+import urllib2, os
 
 class Update():
     def __init__(self):
         pass
 
     def download(self):
-        import urllib2
-
-        url = "https://github.com/spadgenske/thirtytwo-squared/raw/master/tiles/mode.conf"
-
-        file_name = url.split('/')[-1]
-        u = urllib2.urlretrieve(url)
-        f = open(file_name, 'wb')
-        meta = u.info()
-        file_size = int(meta.getheaders("Content-Length")[0])
-        print "Downloading: %s Bytes: %s" % (file_name, file_size)
-
-        file_size_dl = 0
-        block_sz = 8192
-        while True:
-            buffer = u.read(block_sz)
-            if not buffer:
-                break
-
-            file_size_dl += len(buffer)
-            f.write(buffer)
-            status = r"%10d  [%3.2f%%]" % (file_size_dl, file_size_dl * 100. / file_size)
-            status = status + chr(8)*(len(status)+1)
-            print status,
-
-        f.close()
+        pass
 
     def delete(self):
         pass
@@ -45,13 +21,19 @@ class Update():
         return Falsepass
 
     def check_for_update(self):
-        pass
+        old_tiles = open('/home/pi/thirtytwo-squared/static/tile-quanity.txt')
+        num_of_old_tiles = old_tiles.readline()
+        old_tiles.close()
+        print 'Old Tiles: ', num_of_old_tiles
+
+        os.remove('/home/pi/thirtytwo-squared/static/tile-quanity.txt')
+        os.system('sudo wget -4 https://github.com/spadgenske/thirtytwo-squared/raw/master/static/tile-quanity.txt')
+        new_tiles = open('/home/pi/thirtytwo-squared/static/tile-quanity.txt')
+        num_of_new_tiles = new_tiles.readline()
+        print 'New Tiles: ', num_of_new_tiles
 
 if __name__ == '__main__':
     updater = Update()
-    while True:
-        try:
-            updater.download()
-            break
-        except:
-            print 'error'
+    connection = updater.check_connection()
+    if connection == True:
+        updater.check_for_update()
