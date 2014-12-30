@@ -89,4 +89,5 @@ if __name__ == '__main__':
         print '+++++++++++++++++++++++++++'
         print 'Cannot Connect to Internet'
         print '+++++++++++++++++++++++++++'
+        time.sleep(37)
 
