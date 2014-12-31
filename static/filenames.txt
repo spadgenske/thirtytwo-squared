@@ -15,3 +15,5 @@ pacman.ppm
 pokeball.ppm
 spongebob.ppm
 mushroom.ppm
+nyancat.ppm
+flappybird.ppm
