@@ -5,7 +5,6 @@ import time, os, random, update, subprocess
 
 class LEDS():
     def __init__(self):
-        os.system('python update.py')
         self.last_tile = ''
         self.tiles = os.listdir('/home/pi/thirtytwo-squared/tiles')
         self.tiles.remove('time.conf')
@@ -62,9 +61,15 @@ class LEDS():
             self.modes.append(self.mode_file.readline().rstrip())
             
 if __name__ == '__main__':
-    display = LEDS()
-    display.get_mode()
-    while True:
-        display.play_tiles()
+    os.system('python update.py')
+    try:
+        display = LEDS()
+        display.get_mode()
+        while True:
+            display.play_tiles()
+    except:
+        print 'An Error Occurred'
+        subprocess.Popen(['python', 'error.py'])
+        
         
         

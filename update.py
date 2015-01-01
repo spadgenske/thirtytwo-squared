@@ -1,7 +1,7 @@
 #Update tiles
 #By Tyler Spadgenske
 
-import urllib2, os, time, subprocess
+import urllib2, os, time, subprocess, error
 
 class Update():
     def __init__(self):
@@ -58,36 +58,45 @@ class Update():
             i = i.rstrip()
 
         return new_filenames
-        
 
 if __name__ == '__main__':
-    screen = subprocess.Popen(['python', 'startup.py'])
-    updater = Update()
-    connection = updater.check_connection()
-    if connection == True:
-        print '+++++++++++++++++++++++'
-        print 'Connected to Internet'
-        print '+++++++++++++++++++++++'
-        update_availible = updater.check_for_update()
+    try:
+        screen = subprocess.Popen(['python', 'startup.py'])
+        updater = Update()
+        connection = updater.check_connection()
+        if connection == True:
+            print '+++++++++++++++++++++++'
+            print 'Connected to Internet'
+            print '+++++++++++++++++++++++'
+            update_availible = updater.check_for_update()
 
-        if update_availible:
-            sup = subprocess.Popen(['python', 'sup.py'])
-            print '+++++++++++++++++++++++++++'
-            print 'New Update Availible'
-            print '+++++++++++++++++++++++++++'
-            new_files = updater.prepare_download()
-            updater.delete()
-            updater.download(new_files)
-            print 'Update Complete'
-            sup.kill()
+            if update_availible:
+                sup = subprocess.Popen(['python', 'sup.py'])
+                print '+++++++++++++++++++++++++++'
+                print 'New Update Availible'
+                print '+++++++++++++++++++++++++++'
+                new_files = updater.prepare_download()
+                updater.delete()
+                updater.download(new_files)
+                print 'Update Complete'
+                sup.kill()
             
+            else:
+                print '+++++++++++++++++++++++++++'
+                print 'No Update Found'
+                print '+++++++++++++++++++++++++++'
         else:
             print '+++++++++++++++++++++++++++'
-            print 'No Update Found'
+            print 'Cannot Connect to Internet'
             print '+++++++++++++++++++++++++++'
-    else:
-        print '+++++++++++++++++++++++++++'
-        print 'Cannot Connect to Internet'
-        print '+++++++++++++++++++++++++++'
+            time.sleep(37)
+    except Exception as error:
+        print '++++++++++++++++++++++++++++++'
+        print '             Error'
+        print '++++++++++++++++++++++++++++++'
+        print error
+        print
+        print 'SEARCHING FOR ERROR...'
+        subprocess.Popen(['python', 'error.py'])
         time.sleep(37)
 
