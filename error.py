@@ -1,11 +1,11 @@
 #Error Handling
 #copyright 2015 Tyler Spadgenske GPL 2.0
 
-import os, update, sys
+import os, update, sys, constants
 
 class Error():
     def __init__(self):
-        pass
+        self.HOST = constants.HOST
 
     def check_static(self):
         try:
@@ -37,9 +37,9 @@ class Error():
 
     def fix_static(self):
         print 'Retriving "tile-quanity.txt"'
-        os.system('sudo wget -P /home/pi/thirtytwo-squared/static/ -4 https://github.com/spadgenske/thirtytwo-squared/raw/master/static/tile-quanity.txt static/tilequanity.txt')
+        os.system('sudo wget -P /home/pi/thirtytwo-squared/static/ -4 https://github.com/' + self.HOST + '/thirtytwo-squared/raw/master/static/tile-quanity.txt static/tilequanity.txt')
         print 'Retriving "filenames.txt"'
-        os.system('sudo wget -P /home/pi/thirtytwo-squared/static/ -4 https://github.com/spadgenske/thirtytwo-squared/raw/master/static/filenames.txt static/filenames.txt')
+        os.system('sudo wget -P /home/pi/thirtytwo-squared/static/ -4 https://github.com/' +self.HOST + '/thirtytwo-squared/raw/master/static/filenames.txt static/filenames.txt')
         
 
 if __name__ == '__main__':

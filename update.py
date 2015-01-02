@@ -1,15 +1,15 @@
 #Update tiles
-#By Tyler Spadgenske
+#copyright 2015 Tyler Spadgenske
 
-import urllib2, os, time, subprocess, error
+import urllib2, os, time, subprocess, error, constants
 
 class Update():
     def __init__(self):
-        pass
+        self.HOST = constants.HOST
 
     def download(self, files):
         for i in files:
-            os.system('sudo wget -P /home/pi/thirtytwo-squared/tiles/ -4 https://github.com/spadgenske/thirtytwo-squared/raw/master/tiles/' + i.rstrip())
+            os.system('sudo wget -P /home/pi/thirtytwo-squared/tiles/ -4 https://github.com/' + self.HOST + '/thirtytwo-squared/raw/master/tiles/' + i.rstrip())
             print 'Downloaded "' + i + '"'       
 
     def delete(self):
@@ -36,7 +36,7 @@ class Update():
 
         #Remove file and get new one
         os.remove('/home/pi/thirtytwo-squared/static/tile-quanity.txt')
-        os.system('sudo wget -P /home/pi/thirtytwo-squared/static/ -4 https://github.com/spadgenske/thirtytwo-squared/raw/master/static/tile-quanity.txt static/tilequanity.txt')
+        os.system('sudo wget -P /home/pi/thirtytwo-squared/static/ -4 https://github.com/' + self.HOST + '/thirtytwo-squared/raw/master/static/tile-quanity.txt static/tilequanity.txt')
         new_tiles = open('/home/pi/thirtytwo-squared/static/tile-quanity.txt')
         num_of_new_tiles = new_tiles.readline()
 
@@ -51,7 +51,7 @@ class Update():
     def prepare_download(self):
         os.remove('/home/pi/thirtytwo-squared/static/filenames.txt')
         #Get all the filenames of the new/old tiles
-        os.system('sudo wget -P /home/pi/thirtytwo-squared/static/ -4 https://github.com/spadgenske/thirtytwo-squared/raw/master/static/filenames.txt static/filenames.txt')
+        os.system('sudo wget -P /home/pi/thirtytwo-squared/static/ -4 https://github.com/' + self.HOST + '/thirtytwo-squared/raw/master/static/filenames.txt static/filenames.txt')
         filenames_file = open('/home/pi/thirtytwo-squared/static/filenames.txt')
         new_filenames = filenames_file.readlines()
         for i in new_filenames:

@@ -1,5 +1,5 @@
 #LED Controller
-#By Tyler Spadgenske
+#copyright 2015 Tyler Spadgenske
 
 import time, os, random, update, subprocess
 
