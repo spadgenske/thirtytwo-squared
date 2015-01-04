@@ -5,6 +5,7 @@ import time, os, random, update, subprocess
 
 class LEDS():
     def __init__(self):
+        os.chdir('/home/pi/thirtytwo-squared')
         self.last_tile = ''
         self.tiles = os.listdir('/home/pi/thirtytwo-squared/tiles')
         self.tiles.remove('time.conf')
@@ -61,7 +62,7 @@ class LEDS():
             self.modes.append(self.mode_file.readline().rstrip())
             
 if __name__ == '__main__':
-    os.system('python update.py')
+    os.system('python /home/pi/thirtytwo-squared/update.py')
     try:
         display = LEDS()
         display.get_mode()

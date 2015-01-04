@@ -5,6 +5,7 @@ import os, update, sys, constants
 
 class Error():
     def __init__(self):
+        os.chdir('/home/pi/thirtytwo-squared')
         self.HOST = constants.HOST
 
     def check_static(self):

@@ -60,8 +60,9 @@ class Update():
         return new_filenames
 
 if __name__ == '__main__':
+    os.chdir('/home/pi/thirtytwo-squared')
     try:
-        screen = subprocess.Popen(['python', 'startup.py'])
+        screen = subprocess.Popen(['python', '/home/pi/thirtytwo-squared/startup.py'])
         updater = Update()
         connection = updater.check_connection()
         if connection == True:
@@ -71,7 +72,7 @@ if __name__ == '__main__':
             update_availible = updater.check_for_update()
 
             if update_availible:
-                sup = subprocess.Popen(['python', 'sup.py'])
+                sup = subprocess.Popen(['python', '/home/pi/thirtytwo-squared/sup.py'])
                 print '+++++++++++++++++++++++++++'
                 print 'New Update Availible'
                 print '+++++++++++++++++++++++++++'
