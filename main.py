@@ -62,7 +62,7 @@ class LEDS():
             self.modes.append(self.mode_file.readline().rstrip())
             
 if __name__ == '__main__':
-    os.system('python /home/pi/thirtytwo-squared/update.py')
+    os.system('sudo python /home/pi/thirtytwo-squared/update.py')
     try:
         display = LEDS()
         display.get_mode()

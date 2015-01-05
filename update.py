@@ -2,7 +2,7 @@
 #copyright 2015 Tyler Spadgenske
 
 import urllib2, os, time, subprocess, error, constants
-
+            
 class Update():
     def __init__(self):
         self.HOST = constants.HOST
@@ -98,6 +98,6 @@ if __name__ == '__main__':
         print error
         print
         print 'SEARCHING FOR ERROR...'
-        subprocess.Popen(['python', 'error.py'])
+        subprocess.Popen(['python', '/home/pi/thirtytwo-squared/error.py'])
         time.sleep(37)
 
