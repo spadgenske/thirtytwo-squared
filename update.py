@@ -91,6 +91,7 @@ if __name__ == '__main__':
             print 'Cannot Connect to Internet'
             print '+++++++++++++++++++++++++++'
             time.sleep(37)
+            os.system('sudo /home/pi/thirtytwo-squared/matrix/./led-matrix  -D  1 /home/pi/thirtytwo-squared/static/internet.ppm -t 15')
     except Exception as error:
         print '++++++++++++++++++++++++++++++'
         print '             Error'
@@ -99,5 +100,5 @@ if __name__ == '__main__':
         print
         print 'SEARCHING FOR ERROR...'
         subprocess.Popen(['python', '/home/pi/thirtytwo-squared/error.py'])
-        time.sleep(37)
+        time.sleep(70)
 

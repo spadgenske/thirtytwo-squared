@@ -1,5 +1,5 @@
 #Error Handling
-#copyright 2015 Tyler Spadgenske GPL 2.0
+#copyright 2015 by Tyler Spadgenske GPL 2.0
 
 import os, update, sys, constants
 
@@ -75,8 +75,10 @@ if __name__ == '__main__':
             file.write('0')
             file.close()
             print 'CHANGED FILE TO FORCE UPDATE'
+        os.system('sudo /home/pi/thirtytwo-squared/matrix/./led-matrix  -D  1 /home/pi/thirtytwo-squared/static/error.ppm')
         sys.exit()
         
     else:
         print 'NO ERRORS FOUND IN TILES'
         
+    os.system('sudo /home/pi/thirtytwo-squared/matrix/./led-matrix  -D  1 /home/pi/thirtytwo-squared/static/error.ppm -t 30  -m -1')
