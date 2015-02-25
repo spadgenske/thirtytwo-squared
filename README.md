@@ -7,6 +7,5 @@
 The rpi-rgb-led-matrix library is included in this repository. It is under GPL 2.0 just like the rest of the code. 
 https://github.com/hzeller/rpi-rgb-led-matrix
 
-##Wait a second...
-Why is this software called Thirty Two Squared? Shouldn't it be called 32 to the second? 
-Answer: I use a different form of math I just made up.
+
+Uses 32x32 Matrix from Adafruit or Sparkfun. Can be wired up manually or you can use a Raspberry Pi Hat if using a model A+ or B+.
