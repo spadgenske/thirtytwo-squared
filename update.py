@@ -21,12 +21,14 @@ class Update():
             print 'Deleted "' + i + '"'
 
     def check_connection(self):
-        #Open up a google server to check internet connection
-        try:
-            response=urllib2.urlopen('http://74.125.228.100',timeout=1)
+        #download test file
+        os.system("wget -P /home/pi/thirtytwo-squared/test/ -4 https://github.com/spadgenske/thirtytwo-squared/blob/master/static/tile-quanity.txt")
+        files = os.listdir("/home/pi/thirtytwo-squared/test/")
+        if "tile-quanity.txt" in files:
+            os.remove("/home/pi/thirtytwo-squared/test/tile-quanity.txt")
             return True
-        except urllib2.URLError as err: pass
-        return False
+        else:
+            return False
 
     def check_for_update(self):
         #See the current version of tiles
